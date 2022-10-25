@@ -244,3 +244,5 @@ strcasecmp_new_bench/0% same:8_cv             6.79 %         20.71 %            
 ## Conclusion
 
 For strings that are over 30% the same case our implementation provides up to 50% performance benefits over other implementations. However if the two strings are less than 30% there can be a similar up to 25% performance decrement.
+
+We surmise that perhaps CPU caching does not play a significant role in string case comparison, but only branches and perdictions.
