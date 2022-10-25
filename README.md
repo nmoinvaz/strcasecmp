@@ -247,4 +247,4 @@ strcasecmp_new_bench/0% same:8_cv             6.79 %         20.71 %            
 
 For strings that are over 30% the same case our implementation provides up to 50% performance benefits over other implementations. However if the two strings are less than 30% there can be a similar up to 25% performance decrement.
 
-We surmise that perhaps CPU caching does not play a significant role in string case comparison, but only branches and perdictions.
+We surmise that perhaps CPU caching does not play a significant role in string case comparison, but only branches and perdictions. `tolower` has its own branch to determine if the character is uppercase or lowercase which results in a lookup to a hash map. If we can reduce the total number of branches, by skipping an extra branch when characters match, we can speed up the function.
