@@ -13,18 +13,18 @@ This code uses Google Benchmark to perform tests against several 256 character s
 int
 __strcasecmp (const char *s1, const char *s2 LOCALE_PARAM)
 {
-  const unsigned char *p1 = (const unsigned char *) s1;
-  const unsigned char *p2 = (const unsigned char *) s2;
-  int result;
+    const unsigned char *p1 = (const unsigned char *) s1;
+    const unsigned char *p2 = (const unsigned char *) s2;
+    int result;
 
-  if (p1 == p2)
-    return 0;
+    if (p1 == p2)
+        return 0;
 
-  while ((result = TOLOWER (*p1) - TOLOWER (*p2++)) == 0)
-    if (*p1++ == '\0')
-      break;
+    while ((result = TOLOWER (*p1) - TOLOWER (*p2++)) == 0)
+        if (*p1++ == '\0')
+        break;
 
-  return result;
+    return result;
 }
 ```
 https://github.com/bminor/glibc/blob/b92a49359f33a461db080a33940d73f47c756126/string/strcasecmp.c
@@ -36,14 +36,14 @@ int
 strcasecmp(s1, s2)
 	const char *s1, *s2;
 {
-	const u_char
-			*us1 = (const u_char *)s1,
-			*us2 = (const u_char *)s2;
+    const u_char
+            *us1 = (const u_char *)s1,
+            *us2 = (const u_char *)s2;
 
-	while (tolower(*us1) == tolower(*us2++))
-		if (*us1++ == '\0')
-			return (0);
-	return (tolower(*us1) - tolower(*--us2));
+    while (tolower(*us1) == tolower(*us2++))
+        if (*us1++ == '\0')
+            return (0);
+    return (tolower(*us1) - tolower(*--us2));
 }
 
 https://opensource.apple.com/source/Libc/Libc-583/string/FreeBSD/strcasecmp.c.auto.html
@@ -73,13 +73,13 @@ https://github.com/openssl/openssl/blob/79c8dcf3985a7b75eac8e53eb8652728af6c5d3d
 ```c
 int strcasecmp(const char *s1, const char *s2)
 {
-	int c1, c2;
+    int c1, c2;
 
-	do {
-		c1 = tolower(*s1++);
-		c2 = tolower(*s2++);
-	} while (c1 == c2 && c1 != 0);
-	return c1 - c2;
+    do {
+        c1 = tolower(*s1++);
+        c2 = tolower(*s2++);
+    } while (c1 == c2 && c1 != 0);
+    return c1 - c2;
 }
 ```
 ## Our implementation
