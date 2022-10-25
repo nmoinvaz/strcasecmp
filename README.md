@@ -117,6 +117,17 @@ The application allows most Google Benchmark arguments including `--benchmark_re
 
 ## Results
 
+```
+2022-10-25T08:48:13-07:00
+Running 20 repetitions
+Run on (12 X 3202.02 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x6)
+  L1 Instruction 32 KiB (x6)
+  L2 Unified 256 KiB (x6)
+  L3 Unified 12288 KiB (x1)
+```
+
 two strings 100% same case = ~50% improvement
 ```
 strcasecmp_bench/100% same:0_mean              349 ns          132 ns           20
