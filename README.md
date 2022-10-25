@@ -99,12 +99,12 @@ int strcasecmp_new(const char *s1, const char *s2)
     do {
         c1 = *s1++;
         c2 = *s2++;
-        if (c1 == c2)
-            continue;
-        c1 = tolower(c1);
-        c2 = tolower(c2);
-        if (c1 != c2)
-            return (int)c1 - (int)c2;
+        if (c1 != c2) {
+            c1 = tolower(c1);
+            c2 = tolower(c2);
+            if (c1 != c2)
+                return (int)c1 - (int)c2;
+        }
     } while (c1 != 0);
     return 0;
 }
@@ -134,117 +134,117 @@ CPU Caches:
   L3 Unified 12288 KiB (x1)
 ```
 
-two strings 100% same case = ~50% improvement
+two strings 100% same case = ~48% improvement
 ```
-strcasecmp_bench/100% same:0_mean              349 ns          132 ns           20
-strcasecmp_bench/100% same:0_median            315 ns          132 ns           20
-strcasecmp_bench/100% same:0_stddev           49.8 ns         50.2 ns           20
-strcasecmp_bench/100% same:0_cv              14.26 %         38.03 %            20
+strcasecmp_bench/100% same:0_mean              300 ns          164 ns           20
+strcasecmp_bench/100% same:0_median            291 ns          229 ns           20
+strcasecmp_bench/100% same:0_stddev           23.5 ns          120 ns           20
+strcasecmp_bench/100% same:0_cv               7.84 %         73.54 %            20
 
-strcasecmp_new_bench/100% same:0_mean          180 ns         75.2 ns           20
-strcasecmp_new_bench/100% same:0_median        174 ns         71.9 ns           20
-strcasecmp_new_bench/100% same:0_stddev       15.1 ns         42.1 ns           20
-strcasecmp_new_bench/100% same:0_cv           8.39 %         55.98 %            20
+strcasecmp_new_bench/100% same:0_mean          158 ns         89.8 ns           20
+strcasecmp_new_bench/100% same:0_median        159 ns          102 ns           20
+strcasecmp_new_bench/100% same:0_stddev       2.66 ns         53.5 ns           20
+strcasecmp_new_bench/100% same:0_cv           1.69 %         59.58 %            20
 ```
-two strings 83% same case = ~33% improvement
+two strings 83% same case = ~32% improvement
 ```
-strcasecmp_bench/83% same:1_mean               340 ns          154 ns           20
-strcasecmp_bench/83% same:1_median             332 ns          212 ns           20
-strcasecmp_bench/83% same:1_stddev            22.5 ns          115 ns           20
-strcasecmp_bench/83% same:1_cv                6.62 %         74.68 %            20
+strcasecmp_bench/83% same:1_mean               304 ns          173 ns           20
+strcasecmp_bench/83% same:1_median             304 ns          220 ns           20
+strcasecmp_bench/83% same:1_stddev            6.58 ns          123 ns           20
+strcasecmp_bench/83% same:1_cv                2.16 %         70.95 %            20
 
-strcasecmp_new_bench/83% same:1_mean           226 ns         95.5 ns           20
-strcasecmp_new_bench/83% same:1_median         221 ns          123 ns           20
-strcasecmp_new_bench/83% same:1_stddev        10.7 ns         75.9 ns           20
-strcasecmp_new_bench/83% same:1_cv            4.75 %         79.41 %            20
+strcasecmp_new_bench/83% same:1_mean           204 ns          121 ns           20
+strcasecmp_new_bench/83% same:1_median         203 ns          120 ns           20
+strcasecmp_new_bench/83% same:1_stddev        3.48 ns         73.3 ns           20
+strcasecmp_new_bench/83% same:1_cv            1.71 %         60.41 %            20
 ```
-two strings 75% same case = ~35% improvement
+two strings 75% same case = ~36% improvement
 ```
-strcasecmp_bench/75% same:2_mean               366 ns          144 ns           20
-strcasecmp_bench/75% same:2_median             360 ns          132 ns           20
-strcasecmp_bench/75% same:2_stddev            29.3 ns          109 ns           20
-strcasecmp_bench/75% same:2_cv                7.99 %         75.73 %            20
+strcasecmp_bench/75% same:2_mean               321 ns          183 ns           20
+strcasecmp_bench/75% same:2_median             322 ns          237 ns           20
+strcasecmp_bench/75% same:2_stddev            5.37 ns          129 ns           20
+strcasecmp_bench/75% same:2_cv                1.67 %         70.76 %            20
 
-strcasecmp_new_bench/75% same:2_mean           235 ns          104 ns           20
-strcasecmp_new_bench/75% same:2_median         228 ns          104 ns           20
-strcasecmp_new_bench/75% same:2_stddev        16.7 ns         59.3 ns           20
-strcasecmp_new_bench/75% same:2_cv            7.11 %         56.97 %            20
+strcasecmp_new_bench/75% same:2_mean           205 ns          127 ns           20
+strcasecmp_new_bench/75% same:2_median         205 ns          173 ns           20
+strcasecmp_new_bench/75% same:2_stddev        4.52 ns         81.0 ns           20
+strcasecmp_new_bench/75% same:2_cv            2.21 %         63.68 %            20
 ```
-two strings 66% same case = ~25% improvement
+two strings 66% same case = ~32% improvement
 ```
-strcasecmp_bench/66% same:3_mean               350 ns          166 ns           20
-strcasecmp_bench/66% same:3_median             348 ns          210 ns           20
-strcasecmp_bench/66% same:3_stddev            5.78 ns          109 ns           20
-strcasecmp_bench/66% same:3_cv                1.65 %         65.48 %            20
+strcasecmp_bench/66% same:3_mean               351 ns          197 ns           20
+strcasecmp_bench/66% same:3_median             348 ns          199 ns           20
+strcasecmp_bench/66% same:3_stddev            22.8 ns         37.4 ns           20
+strcasecmp_bench/66% same:3_cv                6.50 %         18.92 %            20
 
-strcasecmp_new_bench/66% same:3_mean           261 ns          112 ns           20
-strcasecmp_new_bench/66% same:3_median         256 ns          110 ns           20
-strcasecmp_new_bench/66% same:3_stddev        10.0 ns         7.57 ns           20
-strcasecmp_new_bench/66% same:3_cv            3.84 %          6.76 %            20
+strcasecmp_new_bench/66% same:3_mean           236 ns          138 ns           20
+strcasecmp_new_bench/66% same:3_median         232 ns          141 ns           20
+strcasecmp_new_bench/66% same:3_stddev        10.9 ns         57.4 ns           20
+strcasecmp_new_bench/66% same:3_cv            4.60 %         41.62 %            20
 ```
-two strings 50% same case = ~29% improvement
+two strings 50% same case = ~32% improvement
 ```
-strcasecmp_bench/50% same:4_mean               400 ns          171 ns           20
-strcasecmp_bench/50% same:4_median             394 ns          166 ns           20
-strcasecmp_bench/50% same:4_stddev            15.5 ns         34.4 ns           20
-strcasecmp_bench/50% same:4_cv                3.88 %         20.13 %            20
+strcasecmp_bench/50% same:4_mean               384 ns          217 ns           20
+strcasecmp_bench/50% same:4_median             371 ns          220 ns           20
+strcasecmp_bench/50% same:4_stddev            27.9 ns         21.2 ns           20
+strcasecmp_bench/50% same:4_cv                7.26 %          9.77 %            20
 
-strcasecmp_new_bench/50% same:4_mean           281 ns          133 ns           20
-strcasecmp_new_bench/50% same:4_median         280 ns          184 ns           20
-strcasecmp_new_bench/50% same:4_stddev        7.61 ns          106 ns           20
-strcasecmp_new_bench/50% same:4_cv            2.71 %         79.55 %            20
+strcasecmp_new_bench/50% same:4_mean           259 ns          147 ns           20
+strcasecmp_new_bench/50% same:4_median         259 ns          175 ns           20
+strcasecmp_new_bench/50% same:4_stddev        4.08 ns          102 ns           20
+strcasecmp_new_bench/50% same:4_cv            1.57 %         69.35 %            20
 ```
-two strings 33% same case = ~7% improvement
+two strings 33% same case = ~13% improvement
 ```
-strcasecmp_bench/33% same:5_mean               329 ns          138 ns           20
-strcasecmp_bench/33% same:5_median             324 ns          109 ns           20
-strcasecmp_bench/33% same:5_stddev            16.3 ns         50.2 ns           20
-strcasecmp_bench/33% same:5_cv                4.96 %         36.48 %            20
+strcasecmp_bench/33% same:5_mean               303 ns          169 ns           20
+strcasecmp_bench/33% same:5_median             299 ns          159 ns           20
+strcasecmp_bench/33% same:5_stddev            15.7 ns         54.2 ns           20
+strcasecmp_bench/33% same:5_cv                5.17 %         32.01 %            20
 
-strcasecmp_new_bench/33% same:5_mean           306 ns          137 ns           20
-strcasecmp_new_bench/33% same:5_median         296 ns          131 ns           20
-strcasecmp_new_bench/33% same:5_stddev        24.1 ns         93.4 ns           20
-strcasecmp_new_bench/33% same:5_cv            7.87 %         68.32 %            20
+strcasecmp_new_bench/33% same:5_mean           263 ns          156 ns           20
+strcasecmp_new_bench/33% same:5_median         264 ns          166 ns           20
+strcasecmp_new_bench/33% same:5_stddev        14.7 ns         64.0 ns           20
+strcasecmp_new_bench/33% same:5_cv            5.57 %         41.05 %            20
 ```
-two strings 25% same case = ~3% decrease
+two strings 25% same case = ~5% improvement
 ```
-strcasecmp_bench/25% same:6_mean               319 ns          141 ns           20
-strcasecmp_bench/25% same:6_median             316 ns          184 ns           20
-strcasecmp_bench/25% same:6_stddev            19.0 ns          103 ns           20
-strcasecmp_bench/25% same:6_cv                5.97 %         72.65 %            20
+strcasecmp_bench/25% same:6_mean               287 ns          163 ns           20
+strcasecmp_bench/25% same:6_median             287 ns          161 ns           20
+strcasecmp_bench/25% same:6_stddev            2.99 ns         59.9 ns           20
+strcasecmp_bench/25% same:6_cv                1.04 %         36.73 %            20
 
-strcasecmp_new_bench/25% same:6_mean           329 ns          140 ns           20
-strcasecmp_new_bench/25% same:6_median         325 ns          137 ns           20
-strcasecmp_new_bench/25% same:6_stddev        18.8 ns         17.6 ns           20
-strcasecmp_new_bench/25% same:6_cv            5.71 %         12.64 %            20
+strcasecmp_new_bench/25% same:6_mean           269 ns          159 ns           20
+strcasecmp_new_bench/25% same:6_median         268 ns          158 ns           20
+strcasecmp_new_bench/25% same:6_stddev        3.46 ns         8.69 ns           20
+strcasecmp_new_bench/25% same:6_cv            1.29 %          5.47 %            20
 ```
-two strings 15% same case = ~6% decrease
+two strings 15% same case = ~2% decrease
 ```
-strcasecmp_bench/15% same:7_mean               331 ns          139 ns           20
-strcasecmp_bench/15% same:7_median             323 ns          138 ns           20
-strcasecmp_bench/15% same:7_stddev            21.6 ns         45.9 ns           20
-strcasecmp_bench/15% same:7_cv                6.54 %         33.03 %            20
+strcasecmp_bench/15% same:7_mean               292 ns          168 ns           20
+strcasecmp_bench/15% same:7_median             291 ns          169 ns           20
+strcasecmp_bench/15% same:7_stddev            2.76 ns         14.9 ns           20
+strcasecmp_bench/15% same:7_cv                0.95 %          8.83 %            20
 
-strcasecmp_new_bench/15% same:7_mean           351 ns          140 ns           20
-strcasecmp_new_bench/15% same:7_median         342 ns          146 ns           20
-strcasecmp_new_bench/15% same:7_stddev        18.5 ns         35.3 ns           20
-strcasecmp_new_bench/15% same:7_cv            5.28 %         25.14 %            20
+strcasecmp_new_bench/15% same:7_mean           299 ns          161 ns           20
+strcasecmp_new_bench/15% same:7_median         300 ns          139 ns           20
+strcasecmp_new_bench/15% same:7_stddev        6.81 ns          122 ns           20
+strcasecmp_new_bench/15% same:7_cv            2.28 %         75.59 %            20
 ```
-two strings 0% same case = ~25% decrease
+two strings 0% same case = ~11% decrease
 ```
-strcasecmp_bench/0% same:8_mean                319 ns          136 ns           20
-strcasecmp_bench/0% same:8_median              318 ns          140 ns           20
-strcasecmp_bench/0% same:8_stddev             6.90 ns         99.0 ns           20
-strcasecmp_bench/0% same:8_cv                 2.16 %         72.78 %            20
+strcasecmp_bench/0% same:8_mean                297 ns          155 ns           20
+strcasecmp_bench/0% same:8_median              293 ns          193 ns           20
+strcasecmp_bench/0% same:8_stddev             14.1 ns          118 ns           20
+strcasecmp_bench/0% same:8_cv                 4.75 %         76.46 %            20
 
-strcasecmp_new_bench/0% same:8_mean            397 ns          154 ns           20
-strcasecmp_new_bench/0% same:8_median          381 ns          157 ns           20
-strcasecmp_new_bench/0% same:8_stddev         27.0 ns         31.8 ns           20
-strcasecmp_new_bench/0% same:8_cv             6.79 %         20.71 %            20
+strcasecmp_new_bench/0% same:8_mean            332 ns          209 ns           20
+strcasecmp_new_bench/0% same:8_median          331 ns          242 ns           20
+strcasecmp_new_bench/0% same:8_stddev         4.96 ns          111 ns           20
+strcasecmp_new_bench/0% same:8_cv             1.50 %         52.89 %            20
 ```
 
 ## Conclusion
 
-For strings that are over 30% the same case our implementation provides up to 50% performance benefits over other implementations. However if the two strings are less than 30% there can be a similar up to 25% performance decrement.
+For strings that are over 25% the same case our implementation provides up to 48% performance benefits over other implementations. However if the two strings are less than 25% there can be a similar up to 11% performance decrease.
 
 We surmise that perhaps CPU caching does not play a significant role in string case comparison, but only branches and perdictions. `tolower` has its own branch to determine if the character is uppercase or lowercase which results in a lookup to a hash map. If we can reduce the total number of branches, by skipping an extra branch when characters match, we can speed up the function.
