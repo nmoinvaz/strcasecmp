@@ -70,6 +70,7 @@ int OPENSSL_strncasecmp(const char *s1, const char *s2, size_t n)
 https://github.com/openssl/openssl/blob/79c8dcf3985a7b75eac8e53eb8652728af6c5d3d/crypto/o_str.c
 
 **Linux Kernel**
+
 ```c
 int strcasecmp(const char *s1, const char *s2)
 {
@@ -82,9 +83,12 @@ int strcasecmp(const char *s1, const char *s2)
     return c1 - c2;
 }
 ```
+
+https://github.com/torvalds/linux/blob/master/lib/string.c
+
 ## Our implementation
 
-Partially derived from Linux kernel implementation.
+Partially derived from Linux kernel implementations for `strcasecmp` and `strncasecmp`.
 ```c
 int strcasecmp_new(const char *s1, const char *s2)
 {
