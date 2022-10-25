@@ -97,7 +97,7 @@ int strcasecmp_new(const char *s1, const char *s2)
             continue;
         c1 = tolower(c1);
         c2 = tolower(c2);
-        if (c1 == c2)
+        if (c1 != c2)
             return (int)c1 - (int)c2;
     } while (c1 != 0);
     return 0;
