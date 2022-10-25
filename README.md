@@ -86,6 +86,8 @@ int strcasecmp(const char *s1, const char *s2)
 
 https://github.com/torvalds/linux/blob/master/lib/string.c
 
+Interestingly enough the kernel's implementations for `strcasecmp` and `strncasecmp` will return different negative values for `string1 = "", string2 = "A"` because the quick return in `strncasecmp` when `!c1 || !c2`. In this case `strcasecmp = -'a'` and `strncasecmp = '-A'`. But perhaps it is left up to the implementation what negative value to return.
+
 ## Our implementation
 
 Partially derived from Linux kernel implementations for `strcasecmp` and `strncasecmp`.
