@@ -29,6 +29,8 @@ __strcasecmp (const char *s1, const char *s2 LOCALE_PARAM)
 ```
 https://github.com/bminor/glibc/blob/b92a49359f33a461db080a33940d73f47c756126/string/strcasecmp.c
 
+The check for `p1 == p2` can add an additional benefit for user-mode applications that are compiled with string pooling enabled.
+
 **Apple**
 
 ```c
