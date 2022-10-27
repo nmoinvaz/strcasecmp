@@ -22,9 +22,12 @@ endif()
 
 project(strcasecmp_benchmark CXX)
 
-add_executable(strcasecmp_benchmark)
+add_executable(strcasecmp_benchmark
+    test_strings.h
+    strcasecmp.cc 
+    strcasecmp_map.cc 
+    strcasecmp_curl.cc)
 
-target_sources(strcasecmp_benchmark PRIVATE strcasecmp_benchmark.cc)
 target_include_directories(strcasecmp_benchmark PRIVATE ${benchmark_SOURCE_DIR}/include)
 target_link_directories(strcasecmp_benchmark PRIVATE ${benchmark_BINARY_DIR}/src/Release)
-target_link_libraries(strcasecmp_benchmark benchmark shlwapi)
+target_link_libraries(strcasecmp_benchmark benchmark benchmark_main shlwapi)
