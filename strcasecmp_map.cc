@@ -2,6 +2,8 @@
 
 #include <benchmark/benchmark.h>
 
+#include "test_strings.h"
+
 /* Linux kernel way */
 
 #define _U  0x01 /* upper */
