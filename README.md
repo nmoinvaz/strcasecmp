@@ -71,6 +71,28 @@ int OPENSSL_strncasecmp(const char *s1, const char *s2, size_t n)
 
 https://github.com/openssl/openssl/blob/79c8dcf3985a7b75eac8e53eb8652728af6c5d3d/crypto/o_str.c
 
+**cURL**
+
+```c
+int Curl_strcasecompare(const char *first, const char *second)
+{
+    while(*first && *second) {
+        if(Curl_raw_toupper(*first) != Curl_raw_toupper(*second))
+            /* get out of the loop as soon as they don't match */
+            return 0;
+        first++;
+        second++;
+    }
+    /* If we're here either the strings are the same or the length is different.
+       We can just test if the "current" character is non-zero for one and zero
+       for the other. Note that the characters may not be exactly the same even
+       if they match, we only want to compare zero-ness. */
+    return !*first == !*second;
+}
+```
+
+https://github.com/curl/curl/blob/master/lib/strcase.c
+
 **Linux Kernel**
 
 ```c
