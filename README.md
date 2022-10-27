@@ -267,8 +267,23 @@ strcasecmp_new_bench/0% same:8_stddev         4.96 ns          111 ns           
 strcasecmp_new_bench/0% same:8_cv             1.50 %         52.89 %            20
 ```
 
-## Conclusion
-
 For strings that are over 25% the same case our implementation provides up to 48% performance benefits over other implementations. However if the two strings are less than 25% there can be a similar up to 11% performance decrease.
 
-We surmise that perhaps CPU caching does not play a significant role in string case comparison, but only branches and perdictions. `tolower` has its own branch to determine if the character is uppercase or lowercase which results in a lookup to a hash map. If we can reduce the total number of branches, by skipping an extra branch when characters match, we can speed up the function.
+We surmise that perhaps CPU caching does not play a significant role in string case comparison, but only branches and perdictions. `tolower` has its own branch to determine if the character is uppercase or lowercase which results in a lookup to a hash map.
+
+If we can reduce the total number of branches, by skipping an extra branch when characters match, we can speed up the function in corrolation to the similarity of the two strings.
+
+## Hash Maps
+
+There is another way that involves reducing the number of branches and that is by using a different character hash map.
+
+As stated previously, some implementations of `tolower` first check if the character is uppercase and if so convert it to lowercase.
+
+This is because these `tolower` implementations rely on the `_ctype` hash map which is a 256 character map that can be used to lookup what each character's type is - digit, upper, lower, etc.
+
+However, it is possible to use hash maps that are dedicated to the uppercase/lowercase conversion where the results of `tolower(c)` and `toupper(c)` are precalculated for each of the 256 characters.
+
+## Resources
+
+* [Case-insensitive string comparisons in C](https://daniel.haxx.se/blog/2022/05/19/case-insensitive-string-comparisons-in-c/)
+* [strcmpcase in Turkish](https://daniel.haxx.se/blog/2008/10/15/strcasecmp-in-turkish/)
