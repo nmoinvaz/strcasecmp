@@ -285,5 +285,6 @@ However, it is possible to use hash maps that are dedicated to the uppercase/low
 
 ## Resources
 
+* [strcasecmp](https://pubs.opengroup.org/onlinepubs/9699919799/functions/strcasecmp.html)
 * [Case-insensitive string comparisons in C](https://daniel.haxx.se/blog/2022/05/19/case-insensitive-string-comparisons-in-c/)
 * [strcmpcase in Turkish](https://daniel.haxx.se/blog/2008/10/15/strcasecmp-in-turkish/)
